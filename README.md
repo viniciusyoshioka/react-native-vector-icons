@@ -69,11 +69,9 @@ Should you find this library beneficial, kindly contemplate the option of [spons
 3.  If you're planning to use FontAwesome 5 or 6 icons, refer to these guides: [FontAwesome 5](FONTAWESOME5.md) | [FontAwesome 6](FONTAWESOME6.md)
 
 ### iOS Setup
-To use the bundled icons on iOS, follow these steps:
+To use the bundled icons on iOS, perform the following step:
 
-- Navigate to `node_modules/react-native-vector-icons` and drag the `Fonts` folder (or select specific fonts) into your Xcode project.
-  - Make sure your app is checked under "Add to targets," and if adding the whole folder, check "Create groups."
-  - Not familiar with Xcode? Check out this [article](https://medium.com/@vimniky/how-to-use-vector-icons-in-your-react-native-project-8212ac6a8f06).
+- run `npx pod-install` in the iOS directory
 
 - Edit `Info.plist` and add a property called **Fonts provided by application** (or **UIAppFonts** if Xcode autocomplete is not working):
   - <details><summary>List of all available fonts to copy & paste in Info.plist</summary>
@@ -112,26 +110,7 @@ To use the bundled icons on iOS, follow these steps:
 
   ![XCode screenshot](https://cloud.githubusercontent.com/assets/378279/12421498/2db1f93a-be88-11e5-89c8-2e563ba6251a.png)
 
-- In Xcode, select your project in the navigator, choose your app's target, go to the **Build Phases** tab, and under **Copy Bundle Resources**, add the copied fonts.
-
-- When using auto linking, it will automatically add all fonts to the **Build Phases**, **Copy Pods Resources**. Which will end up in your bundle.
-  To avoid that, create a `react-native.config.js` file at the root of your react-native project with:
-  
-  ```javascript
-    module.exports = {
-      dependencies: {
-        'react-native-vector-icons': {
-          platforms: {
-            ios: null,
-          },
-        },
-      },
-    };
-    ```
-
-_Note: Recompile your project after adding new fonts._
-
-_Note 2: If you're getting problems with `duplicate outputs file` for fonts on ios build, try running `cd ios && pod install` after the `react-native.config.js` configuration._
+_Note: Recompile your project after adding or removing fonts._
 
 ### Android Setup
 
@@ -257,6 +236,11 @@ To set up the library on your macOS project using `react-native-macos`, follow t
 
 2. Edit your `Info.plist` and include a new property named **Application fonts resource path** (or `ATSApplicationFontsPath` if Xcode's autocomplete isn't functioning or you're not using Xcode). Set the value of this property to `Fonts`.
 
+3. From your project's `/ios` folder run:
+```sh
+bundle exec pod install
+```
+   
 _Please note that after adding new fonts, you need to recompile your project. Also, make sure that the `Fonts` folder is present under the **Copy Bundle Resources** section within the **Build Phases** of your Xcode project._
 
 These steps will effectively integrate the vector icons library into your macOS project while utilizing the `react-native-macos` framework.
